@@ -129,6 +129,14 @@ def ad_text(session: requests.Session, url: str) -> str:
     return div.get_text(" ", strip=True) if div else ""
 
 
+def mileage_km(text: str) -> int | None:
+    """'297 тыс.' -> 297000, '17' -> 17, '-' -> None."""
+    n = to_int(text)
+    if n is None:
+        return None
+    return n * 1000 if "тыс" in text else n
+
+
 def matches_basic(ad: Ad, s: dict) -> bool:
     fuel = s.get("fuel")
     if fuel and not FUEL_PATTERNS[fuel].match(ad.engine):
@@ -142,13 +150,18 @@ def matches_basic(ad: Ad, s: dict) -> bool:
         limit = s.get(key)
         if limit is not None and (value is None or not ok(value, limit)):
             return False
+    # mileage is often not given; only filter when it is
+    km = mileage_km(ad.mileage)
+    if s.get("mileage_max") is not None and km is not None and km > s["mileage_max"]:
+        return False
     return True
 
 
 def load_state() -> dict:
+    state = {"first_seen": {}, "notified": {}, "text_rejected": {}}
     if STATE_FILE.exists():
-        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    return {"notified": {}, "text_rejected": {}}
+        state.update(json.loads(STATE_FILE.read_text(encoding="utf-8")))
+    return state
 
 
 def save_state(state: dict) -> None:
@@ -249,23 +262,25 @@ def main() -> int:
             print(json.dumps(asdict(a), ensure_ascii=False))
         return 0
 
-    first_seen = {**{a.id: today for a in new}, **state["notified"]}
-    write_results(list(found.values()), first_seen)
+    for a in found.values():
+        state["first_seen"].setdefault(a.id, today)
+    write_results(list(found.values()), state["first_seen"])
 
+    # ads are marked notified only after a successful send, so once SMTP is
+    # configured the first email contains everything not yet reported
     email_failed = False
     if new and email_configured():
         try:
             send_email(new)
             print(f"Email sent ({len(new)} ads)")
-        except Exception as e:  # keep ads un-notified so the next run retries
+            for a in new:
+                state["notified"][a.id] = today
+        except Exception as e:
             print(f"::error::Email failed: {e}")
             email_failed = True
     elif new:
         print("::warning::SMTP not configured, email skipped")
 
-    if not email_failed:
-        for a in new:
-            state["notified"][a.id] = today
     save_state(state)
     return 1 if email_failed else 0
 

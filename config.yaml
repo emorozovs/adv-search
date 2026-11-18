@@ -4,6 +4,7 @@
 #   fuel:      diesel | petrol   (from the engine column: "2.0D" = diesel, "2.5" = petrol)
 #   year_min / year_max:    inclusive
 #   price_min / price_max:  inclusive, EUR
+#   mileage_max:            km; ads without mileage are kept
 #   text:      regex (case-insensitive) that must appear in the ad title or full ad text
 #   pages:     listing pages to scan (30 ads each, newest first); default 5
 
@@ -12,14 +13,20 @@ searches:
     path: volkswagen/passat-alltrack
     fuel: diesel
     year_min: 2015
+    price_max: 18000
+    mileage_max: 250000
 
   - name: Volvo V90 Cross Country
     path: volvo/v90          # ss.lv has no separate Cross Country section
     fuel: diesel
     year_min: 2016
+    price_max: 18000
+    mileage_max: 250000
     text: 'cross[\s-]*country|\bcc\b'
 
   - name: Subaru Outback
     path: subaru/outback
     fuel: petrol
     year_min: 2017
+    price_max: 18000
+    mileage_max: 150000
