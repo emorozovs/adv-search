@@ -1,0 +1,25 @@
+# Each entry is one search. All filters except `name` and `path` are optional.
+#
+#   path:      ss.lv section after /ru/transport/cars/, e.g. "volvo/v90" or just "bmw"
+#   fuel:      diesel | petrol   (from the engine column: "2.0D" = diesel, "2.5" = petrol)
+#   year_min / year_max:    inclusive
+#   price_min / price_max:  inclusive, EUR
+#   text:      regex (case-insensitive) that must appear in the ad title or full ad text
+#   pages:     listing pages to scan (30 ads each, newest first); default 5
+
+searches:
+  - name: VW Passat Alltrack
+    path: volkswagen/passat-alltrack
+    fuel: diesel
+    year_min: 2015
+
+  - name: Volvo V90 Cross Country
+    path: volvo/v90          # ss.lv has no separate Cross Country section
+    fuel: diesel
+    year_min: 2016
+    text: 'cross[\s-]*country|\bcc\b'
+
+  - name: Subaru Outback
+    path: subaru/outback
+    fuel: petrol
+    year_min: 2017
