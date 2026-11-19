@@ -7,8 +7,8 @@
 | 2016 | 2.0D | 200 тыс. | 12,000  € | 2026-11-19 | [Nesteidzīgi pārdodu mūsu ģimenes uzticamo auto ar 190Hp dīzelīti. Auto ar paties](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/ccogie.html) |
 | 2016 | 2.0D | 238 тыс. | 12,500  € | 2026-11-18 | [VW Passat Alltrack B8 2.0 Tdi 140kw (190 Zs) 4Motion, Full-Led, Webasto Volks](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cdbnnd.html) |
 | 2017 | 2.0D | 246 тыс. | 13,390  € | 2026-11-18 | [VW Passat Alltrack 2.0 Tdi 4Motion Executive, 190 ZS. Kopts un labi uzturēts Pas](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cbjjpe.html) |
+| 2019 | 2.0D | 200 тыс. | 14,350  € | 2026-11-19 | [VW Passat Alltrack 2.0d 140kw/190hp. Lizings No 180eur/men. Lai pārbaudī](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cbphig.html) |
 | 2018 | 2.0D | - | 14,950  € | 2026-11-18 | [VW Passat Alltrack. Automāts. Pilnpiedziņa. Apsildāma stūre. Servisa vēsture. La](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cgfpjn.html) |
-| 2019 | 2.0D | 193 тыс. | 14,950  € | 2026-11-18 | [Pārdod saimnieks, auto labā stāvoklī, Latvijā viens īpašnieks. Zvaniet, visu sar](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/blnjhl.html) |
 | 2018 | 2.0D | 242 тыс. | 14,990  € | 2026-11-18 | [VW Passat Alltrack 4Motion 2018. gada ar Garantiju, 2.0 dīzeļdzinējs ar automāti](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cgcheb.html) |
 | 2022 | 2.0D | 244 тыс. | 16,500  € | 2026-11-18 | [VW Passat Alltrack 4motion 2.0 dīzelis 147kw, Automāts. 147 kw / 200 ZS Auto](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/booooe.html) |
 | 2019 | 2.0D | 172 тыс. | 17,200  € | 2026-11-18 | [Pārdodu labi uzturētu vw passat alltrack b8, 2019 gada, 2.0tdi (140 kw). 4.motio](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cgceil.html) |
