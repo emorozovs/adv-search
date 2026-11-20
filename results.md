@@ -14,7 +14,7 @@
 | 2019 | 2.0D | 172 тыс. | 17,200  € | 2026-11-18 | [Pārdodu labi uzturētu vw passat alltrack b8, 2019 gada, 2.0tdi (140 kw). 4.motio](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cgceil.html) |
 | 2021 | 2.0D | 169 тыс. | 17,450  € | 2026-11-18 | [Volkswagen Passat Alltrack, 2.0 dīzelis, 2021.g. , 147kW Automātiskā pārnesum](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/celoli.html) |
 
-## Volvo V90 Cross Country (9)
+## Volvo V90 Cross Country (8)
 
 | Year | Engine | Mileage | Price | First seen | Ad |
 |---|---|---|---|---|---|
@@ -24,7 +24,6 @@
 | 2017 | 2.0D | 202 тыс. | 17,500 € | 2026-11-18 | [Pārdod Volvo V90 Cross Country D4 190zs. Ziemas riepas uz R18 vieglmetāla diskie](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/cblhnd.html) |
 | 2019 | 2.0D | - | 17,650  € | 2026-11-18 | [V 90 D4 Awd Cross Country - 2.0 Tdi, 190 PS, 223 tk. km nobr. - automātiskā ā](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/chbccx.html) |
 | 2018 | 2.0D | 212 тыс. | 17,800  € | 2026-11-18 | [Pārdod Volvo V90 Cross Country Ocean Race komplektācijā. Dzinējs D4 Awd (140 kW](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/cgpkpf.html) |
-| 2019 | 2.0D | 222 тыс. | 17,990 € | 2026-11-18 | [Volvo V90 D4 Awd Cross Country, 2.0D 140kw, Automāts. Auto tikko ievests Latvi](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/chbcbn.html) |
 | 2017 | 2.0D | - | 17,990  € | 2026-11-18 | [Volvo V90 Cross Country D5 2.0L dīzelis, 173 kW, 07.2017 g. 252 732 km Au](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/cbxpbk.html) |
 | 2017 | 2.0D | 220 тыс. | 18,000  € | 2026-11-18 | [Pārdodu Volvo V90 Cross Country, D4, 190 hp, Awd pilnpiedziņa, tehniskā skate lī](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/cdonen.html) |
 
