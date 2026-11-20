@@ -1,7 +1,8 @@
 # adv-search
 
 Hourly GitHub Actions job that scans [ss.lv car listings](https://www.ss.lv/ru/transport/cars/)
-for ads matching the criteria in `config.yaml` and emails new matches.
+and garage listings for ads matching the criteria in `config.yaml` and emails new matches
+(one email per search `group`: cars, garages).
 
 ## Setup
 

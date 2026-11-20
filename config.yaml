@@ -1,6 +1,9 @@
 # Each entry is one search. All filters except `name` and `path` are optional.
 #
 #   path:      ss.lv section after /ru/transport/cars/, e.g. "volvo/v90" or just "bmw"
+#   section:   instead of `path`: section(s) after /ru/ without /sell/ (string or list),
+#              e.g. "real-estate/premises/garages/riga/teika"
+#   group:     cars (default) | garages -- each group is emailed separately
 #   fuel:      diesel | petrol   (from the engine column: "2.0D" = diesel, "2.5" = petrol)
 #   year_min / year_max:    inclusive
 #   price_min / price_max:  inclusive, EUR
@@ -30,3 +33,10 @@ searches:
     year_min: 2017
     price_max: 18000
     mileage_max: 150000
+
+  - name: Garages Riga
+    group: garages
+    section:
+      - real-estate/premises/garages/riga/chiekurkalns
+      - real-estate/premises/garages/riga/teika
+    price_max: 10000

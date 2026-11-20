@@ -1,10 +1,10 @@
-"""Search ss.lv car listings by criteria, record matches and email new ones.
+"""Search ss.lv listings (cars, garages, ...) by criteria, record matches and email new ones.
 
 Config:   config.yaml  (searches)
 Output:   results.md   (all currently listed matches)
 State:    state.json   (ads already notified / rejected by text filter)
 Email:    env SMTP_USER, SMTP_PASSWORD, EMAIL_TO [, SMTP_HOST, SMTP_PORT]
-          If not set, email is skipped.
+          If not set, email is skipped. One email per search `group` (cars, garages).
 
 Usage:
     python search.py            # search, write results, email new matches
@@ -43,7 +43,14 @@ HEADERS = {
     "Accept-Language": "ru,en;q=0.8",
 }
 # listing header text -> Ad field
-COLUMNS = {"Модель": "model", "Год": "year", "Объём": "engine", "Пробег": "mileage", "Цена": "price"}
+COLUMNS = {"Модель": "model", "Год": "year", "Объём": "engine", "Пробег": "mileage", "Цена": "price",
+           "Улица": "street", "Размер": "size"}
+# per search group: (column title, Ad field) shown in results.md and email
+GROUP_COLUMNS = {
+    "cars": [("Year", "year"), ("Engine", "engine"), ("Mileage", "mileage")],
+    "garages": [("Street", "street"), ("Size", "size")],
+}
+DEFAULT_GROUP = "cars"
 FUEL_PATTERNS = {
     "diesel": re.compile(r"^\d+(\.\d+)?\s*D$", re.I),  # "2.0D"
     "petrol": re.compile(r"^\d+(\.\d+)?$"),  # "2.5" (no suffix)
@@ -61,7 +68,14 @@ class Ad:
     mileage: str = ""
     price: int | None = None
     price_text: str = ""
+    street: str = ""
+    size: str = ""
     search: str = ""
+    group: str = DEFAULT_GROUP
+
+    def col(self, field: str) -> str:
+        value = getattr(self, field)
+        return "" if value is None else str(value)
 
 
 def to_int(text: str) -> int | None:
@@ -109,11 +123,19 @@ def fetch(session: requests.Session, url: str) -> requests.Response:
     return resp
 
 
-def fetch_listings(session: requests.Session, path: str, pages: int) -> list[Ad]:
+def search_sections(s: dict) -> list[str]:
+    """Listing sections (path after /ru/, without /sell/) for a search."""
+    if s.get("path"):
+        return [f"transport/cars/{s['path'].strip('/')}"]
+    sections = s["section"]
+    return [x.strip("/") for x in ([sections] if isinstance(sections, str) else sections)]
+
+
+def fetch_listings(session: requests.Session, section: str, pages: int) -> list[Ad]:
     ads: list[Ad] = []
     for n in range(1, pages + 1):
         suffix = "" if n == 1 else f"page{n}.html"
-        resp = fetch(session, f"{BASE}/ru/transport/cars/{path.strip('/')}/sell/{suffix}")
+        resp = fetch(session, f"{BASE}/ru/{section}/sell/{suffix}")
         if n > 1 and not resp.url.endswith(suffix):  # past the last page -> redirected to page 1
             break
         page_ads = parse_page(resp.text)
@@ -177,13 +199,16 @@ def write_results(found: list[Ad], first_seen: dict[str, str]) -> None:
     for a in found:
         by_search.setdefault(a.search, []).append(a)
     for name, ads in by_search.items():
+        cols = GROUP_COLUMNS.get(ads[0].group, GROUP_COLUMNS[DEFAULT_GROUP])
+        titles = [t for t, _ in cols] + ["Price", "First seen", "Ad"]
         lines += [f"## {name} ({len(ads)})", "",
-                  "| Year | Engine | Mileage | Price | First seen | Ad |",
-                  "|---|---|---|---|---|---|"]
+                  "| " + " | ".join(titles) + " |",
+                  "|" + "---|" * len(titles)]
         for a in sorted(ads, key=lambda a: a.price or 0):
             title = a.title.replace("|", "/")[:80]
-            lines.append(f"| {a.year or ''} | {a.engine} | {a.mileage} | {a.price_text} "
-                         f"| {first_seen.get(a.id, '')} | [{title}]({a.url}) |")
+            cells = [a.col(f).replace("|", "/") for _, f in cols]
+            cells += [a.price_text, first_seen.get(a.id, ""), f"[{title}]({a.url})"]
+            lines.append("| " + " | ".join(cells) + " |")
         lines.append("")
     if not found:
         lines.append("_No matches._")
@@ -194,27 +219,30 @@ def email_configured() -> bool:
     return all(os.environ.get(k) for k in ("SMTP_USER", "SMTP_PASSWORD", "EMAIL_TO"))
 
 
-def send_email(ads: list[Ad]) -> None:
+def send_email(group: str, ads: list[Ad]) -> None:
+    cols = GROUP_COLUMNS.get(group, GROUP_COLUMNS[DEFAULT_GROUP])
     text = "\n\n".join(
-        f"[{a.search}] {a.title}\n{a.year} | {a.engine} | {a.mileage} | {a.price_text}\n{a.url}"
+        f"[{a.search}] {a.title}\n"
+        + " | ".join([a.col(f) for _, f in cols] + [a.price_text])
+        + f"\n{a.url}"
         for a in ads
     )
     rows = "".join(
         f"<tr><td>{html.escape(a.search)}</td>"
         f'<td><a href="{html.escape(a.url)}">{html.escape(a.title)}</a></td>'
-        f"<td>{a.year or ''}</td><td>{html.escape(a.engine)}</td>"
-        f"<td>{html.escape(a.mileage)}</td><td><b>{html.escape(a.price_text)}</b></td></tr>"
+        + "".join(f"<td>{html.escape(a.col(f))}</td>" for _, f in cols)
+        + f"<td><b>{html.escape(a.price_text)}</b></td></tr>"
         for a in ads
     )
+    head = "".join(f"<th>{t}</th>" for t, _ in cols)
     msg = EmailMessage()
-    msg["Subject"] = f"ss.lv: {len(ads)} new car ad(s)"
+    msg["Subject"] = f"ss.lv: {len(ads)} new {group} ad(s)"
     msg["From"] = os.environ["SMTP_USER"]
     msg["To"] = os.environ["EMAIL_TO"]
     msg.set_content(text)
     msg.add_alternative(
         '<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse">'
-        "<tr><th>Search</th><th>Ad</th><th>Year</th><th>Engine</th><th>Mileage</th>"
-        f"<th>Price</th></tr>{rows}</table>",
+        f"<tr><th>Search</th><th>Ad</th>{head}<th>Price</th></tr>{rows}</table>",
         subtype="html",
     )
     host = os.environ.get("SMTP_HOST") or "smtp.gmail.com"
@@ -239,7 +267,8 @@ def main() -> int:
     for s in searches:
         name = s["name"]
         text_re = re.compile(s["text"], re.I) if s.get("text") else None
-        listings = fetch_listings(session, s["path"], s.get("pages", 5))
+        listings = [a for sec in search_sections(s)
+                    for a in fetch_listings(session, sec, s.get("pages", 5))]
         hits = []
         for a in listings:
             if not matches_basic(a, s):
@@ -250,6 +279,7 @@ def main() -> int:
                     state["text_rejected"].setdefault(a.id, today)
                     continue
             a.search = name
+            a.group = s.get("group", DEFAULT_GROUP)
             hits.append(a)
             found.setdefault(a.id, a)
         print(f"[{name}] scanned {len(listings)} ads, {len(hits)} match")
@@ -270,14 +300,18 @@ def main() -> int:
     # configured the first email contains everything not yet reported
     email_failed = False
     if new and email_configured():
-        try:
-            send_email(new)
-            print(f"Email sent ({len(new)} ads)")
-            for a in new:
-                state["notified"][a.id] = today
-        except Exception as e:
-            print(f"::error::Email failed: {e}")
-            email_failed = True
+        by_group: dict[str, list[Ad]] = {}
+        for a in new:
+            by_group.setdefault(a.group, []).append(a)
+        for group, ads in by_group.items():
+            try:
+                send_email(group, ads)
+                print(f"Email sent: {group} ({len(ads)} ads)")
+                for a in ads:
+                    state["notified"][a.id] = today
+            except Exception as e:
+                print(f"::error::Email failed ({group}): {e}")
+                email_failed = True
     elif new:
         print("::warning::SMTP not configured, email skipped")
 
