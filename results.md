@@ -1,6 +1,6 @@
 # Current matches
 
-## VW Passat Alltrack (9)
+## VW Passat Alltrack (10)
 
 | Year | Engine | Mileage | Price | First seen | Ad |
 |---|---|---|---|---|---|
@@ -11,6 +11,7 @@
 | 2019 | 2.0D | 200 тыс. | 14,350 € | 2026-11-19 | [VW Passat Alltrack 2.0d 140kw/190hp. Lizings No 180eur/men. Lai pārbaudī](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cbphig.html) |
 | 2018 | 2.0D | - | 14,950 € | 2026-11-18 | [VW Passat Alltrack. Automāts. Pilnpiedziņa. Apsildāma stūre. Servisa vēsture. La](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cgfpjn.html) |
 | 2018 | 2.0D | 242 тыс. | 14,990 € | 2026-11-18 | [VW Passat Alltrack 4Motion 2018. gada ar Garantiju, 2.0 dīzeļdzinējs ar automāti](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/cgcheb.html) |
+| 2018 | 2.0D | 197 тыс. | 16,100 € | 2026-11-25 | [Ziema nāk, pilnpiedziņa, autonomā apsilde, paaugstināts klīrens. Automašīna ideā](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/bmfflb.html) |
 | 2022 | 2.0D | 244 тыс. | 16,500 € | 2026-11-18 | [VW Passat Alltrack 4motion 2.0 dīzelis 147kw, Automāts. 147 kw / 200 ZS Auto](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/booooe.html) |
 | 2021 | 2.0D | 169 тыс. | 16,950 € | 2026-11-18 | [Volkswagen Passat Alltrack, 2.0 dīzelis, 2021.g. , 147kW Automātiskā pārnesum](https://www.ss.lv/msg/ru/transport/cars/volkswagen/passat-alltrack/celoli.html) |
 
