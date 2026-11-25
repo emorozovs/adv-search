@@ -27,9 +27,3 @@
 | 2018 | 2.0D | 212 тыс. | 17,800 € | 2026-11-18 | [Pārdod Volvo V90 Cross Country Ocean Race komplektācijā. Dzinējs D4 Awd (140 kW](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/cgpkpf.html) |
 | 2017 | 2.0D | - | 17,990 € | 2026-11-18 | [Volvo V90 Cross Country D5 2.0L dīzelis, 173 kW, 07.2017 g. 252 732 km Au](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/cbxpbk.html) |
 
-## Subaru Outback (1)
-
-| Year | Engine | Mileage | Price | First seen | Ad |
-|---|---|---|---|---|---|
-| 2019 | 2.5 | 120 тыс. | 17,990 € | 2026-11-18 | [Subaru Outback 4x4 ar 2.5 Benzīna dzinēju un Automātisko ātrumkārbu-175 Z/s. Vid](https://www.ss.lv/msg/ru/transport/cars/subaru/outback/dcogx.html) |
-
