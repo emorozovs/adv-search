@@ -28,9 +28,10 @@
 | 2019 | 2.0D | - | 17,580 € | 2026-11-22 | [V 90 D4 Awd Cross Country, 223 tk. km nobr. - 2.0 Tdi, 190 PS - automātiskā ā](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/cdhfli.html) |
 | 2017 | 2.0D | - | 17,990 € | 2026-11-18 | [Volvo V90 Cross Country D5 2.0L dīzelis, 173 kW, 07.2017 g. 252 732 km Au](https://www.ss.lv/msg/ru/transport/cars/volvo/v90/cbxpbk.html) |
 
-## Subaru Outback (1)
+## Subaru Outback (2)
 
 | Year | Engine | Mileage | Price | First seen | Ad |
 |---|---|---|---|---|---|
+| 2019 | 2.5 | 120 тыс. | 17,790 € | 2026-11-18 | [Subaru Outback 4x4 ar 2.5 Benzīna dzinēju un Automātisko ātrumkārbu-175 Z/s. Vid](https://www.ss.lv/msg/ru/transport/cars/subaru/outback/dcogx.html) |
 | 2018 | 2.5 | 120 тыс. | 17,950 € | 2026-11-25 | [Subaru Outback Awd 2.5i (175 zs) ar automātisko Pārnesumkārbu. Iegādājies savu](https://www.ss.lv/msg/ru/transport/cars/subaru/outback/ibgek.html) |
 
